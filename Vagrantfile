@@ -8,13 +8,13 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     yes | pkg update
     yes | pkg upgrade
-    yes | pkg install python38-3.8.18
-    yes | pkg install php80-composer-2.6.6
+    yes | pkg install python3
+    yes | pkg install php82-composer
     yes | pkg install portsnap
     portsnap fetch --interactive
     portsnap extract
-    su vagrant -c "python3.8 -m ensurepip"
-    su vagrant -c "python3.8 -m pip install jinja2"
+    su vagrant -c "python3.11 -m ensurepip"
+    su vagrant -c "python3.11 -m pip install jinja2"
   SHELL
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--memory", "1024"]
